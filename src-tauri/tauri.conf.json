@@ -15,15 +15,21 @@
       "shell": {
         "all": false,
         "open": true
+      },
+      "window": {
+        "all": false,
+        "startDragging": true
       }
     },
     "windows": [
       {
         "fullscreen": false,
-        "resizable": true,
+        "resizable": false,
         "title": "pomo-desk",
-        "width": 800,
-        "height": 600
+        "width": 400,
+        "height": 200,
+        "decorations": false,
+        "alwaysOnTop": false
       }
     ],
     "security": {
