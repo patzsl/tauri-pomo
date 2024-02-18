@@ -84,6 +84,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  gap: 1.5em;
 }
 
 .row {
@@ -92,6 +93,7 @@
 }
 
 h1 {
+  font-size: 36px;
   text-align: center;
 }
  
