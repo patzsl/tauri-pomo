@@ -3,17 +3,29 @@ import Timer from "./features/Timer/Timer";
 import { Button } from "@/components/ui/button";
 
 function App() {
-  const [seconds, setSeconds] = useState(1800);
+  const [timerSeconds, setTimerSeconds] = useState(0);
   const [active, setActive] = useState(false);
+  const setSecondsToFocus = () => setTimerSeconds(1500);
+  const setSecondsToShortBreak = () => setTimerSeconds(300);
+  const setSecondsToLongBreak = () => setTimerSeconds(900);
+
+  const toggleTimer = () => {
+    setActive(!active);
+  };
 
   return (
     <div className="container">
-      <Timer initialSeconds={seconds} active={active} setActive={setActive} />
+      <Timer
+        key={timerSeconds}
+        initialSeconds={timerSeconds}
+        active={active}
+        setActive={setActive}
+      />
       <div className="flex gap-2">
-        <Button onClick={() => setSeconds(600)}>10</Button>
-        <Button onClick={() => setSeconds(1500)}>25</Button>
-        <Button onClick={() => setSeconds(1800)}>30</Button>
-        <Button onClick={() => setActive(true)}>Iniciar</Button>
+        <Button onClick={setSecondsToFocus}>Focus</Button>
+        <Button onClick={setSecondsToShortBreak}>Short Break</Button>
+        <Button onClick={setSecondsToLongBreak}>Long Break</Button>
+        <Button onClick={toggleTimer}>{active ? "Pausar" : "Iniciar"}</Button>
         <Button onClick={() => setActive(false)}>Pausar</Button>
       </div>
     </div>
