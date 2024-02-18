@@ -19,8 +19,12 @@ export const useTimer = (
     let interval: any = null;
     if (active) {
       interval = setInterval(() => {
-        secondsLeftRef.current--;
-        setSecondsLeft(secondsLeftRef.current);
+        if (secondsLeftRef.current > 0) {
+          secondsLeftRef.current--;
+          setSecondsLeft(secondsLeftRef.current);
+        } else {
+          setActive(false);
+        }
       }, 1000);
     }
     return () => clearInterval(interval);

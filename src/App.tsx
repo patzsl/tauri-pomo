@@ -12,12 +12,14 @@ function App() {
   const [active, setActive] = useState(false);
   const [reset, setReset] = useState(false); // Adiciona estado para reinicialização
 
-  const setSecondsToFocus = () => setTimerSeconds(1500);
+  const setSecondsToFocus = () => setTimerSeconds(5);
   const setSecondsToShortBreak = () => setTimerSeconds(300);
   const setSecondsToLongBreak = () => setTimerSeconds(900);
 
   const toggleTimer = () => {
-    setActive(!active);
+    if (timerSeconds !== 0) {
+      setActive(!active);
+    }
   };
 
   const resetTimer = () => {
