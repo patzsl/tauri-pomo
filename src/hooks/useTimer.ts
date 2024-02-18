@@ -4,9 +4,16 @@ export const useTimer = (
   initialSeconds: number,
   active: boolean,
   setActive: (active: boolean) => void,
+  reset: boolean,
+  setReset: (reset: boolean) => void,
 ) => {
   const [secondsLeft, setSecondsLeft] = useState(initialSeconds);
   const secondsLeftRef = useRef(secondsLeft);
+
+  useEffect(() => {
+    secondsLeftRef.current = initialSeconds;
+    setSecondsLeft(initialSeconds);
+  }, [initialSeconds]); // Adiciona initialSeconds como dependência
 
   useEffect(() => {
     let interval: any = null;
@@ -19,5 +26,12 @@ export const useTimer = (
     return () => clearInterval(interval);
   }, [active]);
 
-  return { secondsLeft, active }; // Certifique-se de retornar 'active' aqui
+  useEffect(() => {
+    if (reset) {
+      setSecondsLeft(initialSeconds);
+      setReset(false); // Desativa o sinalizador de reinicialização
+    }
+  }, [reset]);
+
+  return { secondsLeft, active };
 };
