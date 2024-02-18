@@ -26,7 +26,7 @@ const Timer: React.FC<TimerProps> = ({
   const formattedTime = formatTime(secondsLeft);
 
   return (
-    <div className="container">
+    <div className="container w-fit self-center" data-tauri-drag-region>
       <h1>{formattedTime}</h1>
     </div>
   );

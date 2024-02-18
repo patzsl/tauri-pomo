@@ -111,5 +111,8 @@ h1 {
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    user-select: none;
+    font-size: 14px;
+    cursor: default;
   }
 }

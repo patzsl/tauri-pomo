@@ -1,7 +1,12 @@
 import { useState } from "react";
 import Timer from "./features/Timer/Timer";
 import { Button } from "@/components/ui/button";
-
+import { appWindow } from "@tauri-apps/api/window";
+const draggableElement = document.body;
+if (draggableElement) {
+  draggableElement.setAttribute("data-tauri-drag-region", "");
+}
+await appWindow.startDragging();
 function App() {
   const [timerSeconds, setTimerSeconds] = useState(0);
   const [active, setActive] = useState(false);
@@ -21,7 +26,7 @@ function App() {
   };
 
   return (
-    <div className="container">
+    <div className="container" data-tauri-drag-region>
       <div className="flex gap-2">
         <Button onClick={setSecondsToFocus}>Focus</Button>
         <Button onClick={setSecondsToShortBreak}>Short Break</Button>
@@ -35,7 +40,7 @@ function App() {
         reset={reset} // Passa o estado de reset para o hook
         setReset={setReset} // Passa a função para alterar o estado de reset
       />
-      <div className="flex gap-2 justify-center">
+      <div className="flex gap-2 justify-center w-fit self-center">
         <Button onClick={toggleTimer}>{active ? "Pausar" : "Iniciar"}</Button>
         <Button onClick={resetTimer}>
           <svg
